@@ -1,0 +1,148 @@
+﻿@model List<SW.DAL.Product>
+@{
+    ViewBag.Title = "ProductManagement";
+    Layout = "~/Views/Shared/_AdminProfileLayout.cshtml";
+    
+}
+
+
+<style>
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .overlay a:hover, .overlay a:focus {
+            color: #f1f1f1;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+
+       
+</style>
+
+@*<script>
+    $(function () {
+        $(".detailBtn").click(function () {
+
+            var productid= $(this).attr("productid");
+            var pname= $(this).attr("pname");
+            var price= $(this).attr("price");
+            var categoryid= $(this).attr("categoryid");
+            var picturename= $(this).attr("picturename");
+
+            var createdon = $(this).attr("createdon").toString();
+            var createdby= $(this).attr("createdby");
+
+            var modifiedon = $(this).attr("modifiedon").toString();
+            var modifiedby= $(this).attr("modifiedby");
+            
+            
+
+
+            
+            alert(productid);
+            alert(pname);
+            alert(price);
+            alert(categoryid);
+            alert(picturename);
+            alert(createdby);
+            alert(modifiedby);
+
+            alert(createdoon);
+            alert(modifiedon);
+            
+            
+
+
+
+        });
+    });
+</script>*@
+
+
+
+<h2>ProductManagement</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@*<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content" >
+       
+    </div>
+</div>*@
+
+
+<table class="table">
+    <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    @for (int i = 0; i < Model.Count(); i++ )
+    {
+        if (Model[i].IsActive == true)
+        {
+            <tr>
+                <td><img src="/UploadedFiles/@Model[i].PictureName" style="width:100px;height:100px;" /></td>
+                <td>@Html.DisplayFor(modelitem => Model[i].PName)</td>
+                <td>@Html.DisplayFor(modelitem => Model[i].Price)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model[i].ProductID }) |
+                    @*<span style="cursor:pointer" onclick="openNav()" class="detailBtn" productid="@Model[i].ProductID" pname="@Model[i].PName" price="@Model[i].Price" categoryid="@Model[i].CategoryID" picturename="@Model[i].PictureName" createdon="@Model[i].CreatedOn" createdby="@Model[i].CreatedBy" modifiedon="@Model[i].ModifiedOn" modifiedby="@Model[i].ModifiedBy"><a>Details</a></span> |*@
+                    @Html.ActionLink("Details", "Details", new { id = Model[i].ProductID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model[i].ProductID }) 
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+
+@*<script>
+    function openNav() {
+        document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+</script>*@

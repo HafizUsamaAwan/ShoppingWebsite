@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Mail";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+<!-- banner -->
+<div class="banner banner10">
+    <div class="container">
+        <h2>Mail Us</h2>
+    </div>
+</div>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="breadcrumb_dress">
+    <div class="container">
+        <ul>
+            <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+            <li>Mail Us</li>
+        </ul>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- mail -->
+<div class="mail">
+    <div class="container">
+        <h3>Mail Us</h3>
+        <div class="agile_mail_grids">
+            <div class="col-md-5 contact-left">
+                <h4>Address</h4>
+                <p>
+                    Punjab University
+                </p>
+                <p>
+                    College of Information Technology.
+                
+                </p>
+
+                <p>
+                    <span>Lahore,Pakistan</span>
+                </p>
+                <br />
+                <ul>
+                    <li>Free Phone :0123456789</li>
+                    <li>Telephone :0123456789</li>
+                    <li><a href="#">osamahafiz2014@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="col-md-7 contact-left">
+                <h4>Contact Form</h4>
+                <form action="~/Mail/POST" method="post">
+                    <input type="text" name="SenderName" placeholder="Your Name" required="">
+                    <input type="email" name="SenderEmail" placeholder="Your Email" required="">
+                    <input type="text" name="SenderCellNo" placeholder="Telephone No" required="">
+                    <textarea name="Message" placeholder="Message..." required=""></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //mail -->
+
+

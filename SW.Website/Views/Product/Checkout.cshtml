@@ -1,0 +1,61 @@
+﻿@model List<SW.DAL.CartItem>
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+}
+
+<h2>Checkout</h2>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+<br />
+<a href="~/Product/BuyNow">Buy Now</a> 
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th style="color:black;">Picture</th>
+        <th style ="color:black;">Name</th>
+        <th style="color:black;">Unit Price</th>
+        <th style="color:black;">Quantity</th>
+        <th style="color:black;">Total Price</th>
+        <th style="color:black;">Remove</th>
+    </tr>
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        if (Model[i].IsActive == true)
+        {
+            <tr>
+                <td><img src="/UploadedFiles/@Model[i].Product.PictureName" style="width:100px;height:100px;" /></td>
+                <td style="color:black;">@Html.DisplayFor(modelitem => Model[i].Product.PName)</td>
+                <td style="color:black;">@Html.DisplayFor(modelitem => Model[i].Product.Price)</td>
+                <td style="color:black;">@Html.DisplayFor(modelitem => Model[i].Quantity)</td>
+                <td style="color:black;">@Html.DisplayFor(modelitem => Model[i].TotalCost)</td>
+
+                <td>
+                    <a href='@Url.Action("RemoveItem", "Product", new { id=@i})'><img style="height:20px;width:20px;" src="~/images/cross.png" /></a>
+                </td>
+            </tr>
+        }
+
+    }
+</table>

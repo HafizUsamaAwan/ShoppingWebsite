@@ -1,0 +1,63 @@
+﻿@model SW.DAL.Product
+@{
+    ViewBag.Title = "ShowDetails";
+    Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        height: 900px;
+        margin: auto;
+        font-family: arial;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+        .container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+
+
+    /*a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }*/
+</style>
+
+<h2 style="text-align:center">Product details</h2>
+<br /><br />
+<div class="card">
+    <img src="/UploadedFiles/@Model.PictureName" alt="John" style="width:600px;height:400px;">
+    <br /><br />
+    <div class="container">
+        <div style="max-width:550px"><h1>@Model.PName</h1></div>
+        <br /> <br /><br />
+        Price:<span>&emsp; &emsp;@Model.Price</span><br /><br />
+        Category:<span>&emsp; &emsp;@ViewBag.Category.CategoryName</span><br /><br />
+        <form action="~/Product/AddToCart" method="post">
+            Quantity: <input type="number" name="prodQuantity" />
+            <input type="hidden" name="prodID" value="@Model.ProductID" />
+            <button type="submit" class="w3ls-cart">Add to cart</button>
+        </form>
+        <span>@TempData["ErrorMsg"]</span>
+    </div>
+</div>

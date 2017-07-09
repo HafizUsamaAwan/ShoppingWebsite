@@ -1,0 +1,51 @@
+﻿@model List<SW.DAL.Product>
+@{
+    ViewBag.Title = "UserProfileArea";
+    Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+}
+
+<h2>@Session["Products"].ToString() &emsp;Products</h2>
+
+
+<br />
+@for (int i = 0; i < Model.Count(); i++)
+{
+    if (Model[i].IsActive == true)
+    {
+        if(Model[i].CategoryID==(int)Session["CategoryID"])
+        {
+             <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+							<div class="agile_ecommerce_tab_left mobiles_grid">
+								<div > 
+                                    <img src="~/UploadedFiles/@Model[i].PictureName" alt=" " class="img-responsive" style="margin-left:90px; height:200px; width:200px;" />
+								</div>
+								<h5 style="color:red;">@Model[i].PName</h5>
+								<div class="simpleCart_shelfItem">
+									<p><i class="item_price">Rs: @Model[i].Price</i></p>
+									<form action="~/Product/ShowDetails/@Model[i].ProductID" method="post">
+                                        @*<input type="hidden" name="id" value="@Model[i].ProductID">*@
+                                        <button type="submit" class="w3ls-cart">Details</button>
+									</form>
+                                    <br />
+								</div> 
+							</div>
+						</div>
+        }
+   
+                       
+    
+                    
+    }
+
+}
+
+
+
+
+
+
+
+
+
+@{Session["Products"] = "Mobile";}
+

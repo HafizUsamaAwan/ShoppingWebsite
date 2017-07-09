@@ -1,0 +1,59 @@
+﻿@model SW.DAL.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminProfileLayout.cshtml";
+}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            height: 1100px;
+            margin: auto;
+            font-family: arial;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+            .container::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+    
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+    </style>
+
+    <h2 style="text-align:center">Product details</h2>
+<br /><br />
+    <div class="card">
+        <img src="/UploadedFiles/@Model.PictureName" alt="John" style="width:100%">
+        <br />
+        <div class="container">
+            <div style="max-width:550px"><h1>@Model.PName</h1></div>
+            <br /> <br /><br />
+            Product ID: <span>&emsp; &emsp; @Model.ProductID</span><br /><br />
+            Price:<span>&emsp; &emsp;@Model.Price</span><br /><br />
+            Category:<span>&emsp; &emsp;@ViewBag.Category.CategoryName</span><br /><br />
+            Created on:<span>&emsp; &emsp;@Model.CreatedOn</span><br /><br />
+            Created by:<span>&emsp; &emsp;@Model.CreatedBy</span><br /><br />
+            Modified on:<span>&emsp; &emsp;@Model.ModifiedOn</span><br /><br />
+            Modified by:<span>&emsp; &emsp;@Model.ModifiedBy</span>
+
+        </div>
+    </div>
+

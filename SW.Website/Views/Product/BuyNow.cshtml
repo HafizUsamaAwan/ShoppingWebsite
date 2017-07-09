@@ -1,0 +1,96 @@
+﻿@model SW.DAL.Payment
+@{
+    ViewBag.Title = "BuyNow";
+    Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+}
+
+
+    <h2>Thank you! for shopping. Delivery will be in 24 hours.</h2>
+    <h2>Reciept</h2>
+
+    @{
+        double totalCost = (double)Session["totalCost"];
+        List<SW.DAL.CartItem> cartItems = (List<SW.DAL.CartItem>)Session["Items"];
+    }
+<style>
+    .uuu {
+        width: 320px;
+        padding: 10px;
+        border: 5px solid gray;
+        margin: 0;
+        text-align: left;
+    }
+</style>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+
+    <br />
+    <br />
+    <table class="table">
+        
+            <tr>
+                <th style="color:black;">Picture</th>
+                <th style="color:black;">Name</th>
+                <th style="color:black;">Unit Price</th>
+                <th style="color:black;">Quantity</th>
+                <th style="color:black;">Total Price</th>
+            </tr>
+        
+           
+        
+       @for (int i = 0; i < cartItems.Count(); i++)
+        {
+           
+               <tr>
+                   <td><img src="/UploadedFiles/@cartItems[i].Product.PictureName" style="width:100px;height:100px;" /></td>
+                   <td style="color:black;">@Html.DisplayFor(modelitem => cartItems[i].Product.PName)</td>
+                   <td style="color:black;">@Html.DisplayFor(modelitem => cartItems[i].Product.Price)</td>
+                   <td style="color:black;">@Html.DisplayFor(modelitem => cartItems[i].Quantity)</td>
+                   <td style="color:black;">@Html.DisplayFor(modelitem => cartItems[i].TotalCost)</td>
+               </tr>
+        }
+    </table>
+
+<center>
+    <div class="uuu">
+        &emsp; &emsp;Reciept ID:<span>&emsp; &emsp;@Model.PaymentID</span><br /><br />
+        &emsp; &emsp;Cart ID:<span>&emsp; &emsp;@Model.CartID</span><br /><br />
+        &emsp; &emsp;Number of items:<span>&emsp; &emsp;@cartItems.Count</span><br /><br />
+        &emsp; &emsp;Payment Type:<span>&emsp; &emsp;@Model.PaymentType</span><br /><br />
+        &emsp; &emsp;Customer Name:<span>&emsp; &emsp;@Session["UserName"].ToString()</span><br /><br />
+        &emsp; &emsp;Customer ID:<span>&emsp; &emsp;@Model.CustomerID</span><br /><br />
+        &emsp; &emsp;Ammount:<span>&emsp; &emsp;@Model.Ammount</span><br /><br />
+        &emsp; &emsp;Date:<span>&emsp; &emsp;@Model.Date.ToString()</span><br /><br />
+    </div>
+</center>
+
+
+
+
+@{
+    double cost = 0;
+    Session["totalCost"] = cost;
+    
+    List<SW.DAL.CartItem> cList = new List<SW.DAL.CartItem>();
+    Session["Items"] = cList;
+}
+
